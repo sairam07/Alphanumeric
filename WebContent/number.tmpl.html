@@ -1,0 +1,62 @@
+<div class="tab-pane fade in active">
+    <h6>Login</h6>
+
+
+
+    <form role="form" name="number" ng-submit="numVm.permute(obj.number)">
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+
+                    <label for="number">Number</label>
+                    <input type="text" class="form-control" name="num" id="number" placeholder="Enter 7 digit Number" ng-model="obj.number"  ng-minlength=7 ng-maxlength=7 required />
+                </div>
+            </div>
+
+        </div>
+
+        <div ng-messages="number.num.$error">
+            <!-- the required message is displayed first... -->
+            <div ng-message="required">You forgot to enter the number</div>
+
+            <!-- then, incase the message is too short, show the message right after -->
+            <div ng-message="minlength">Your number is too short...</div>
+
+            <!-- of if is too long then let us know -->
+            <div ng-message="maxlength">Your number is too long...</div>
+
+
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn large-btn btn-primary" value="report">Submit</button>
+        </div>
+
+
+        <dir-pagination-controls
+                max-size="5"
+                direction-links="true"
+                boundary-links="true" >
+        </dir-pagination-controls>
+
+        <label> Total Count : {{numVm.count}}</label>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+
+                <th> Numbers </th>
+            <tr>
+            </thead>
+            <tbody>
+            <tr dir-paginate ="p in numVm.perm | itemsPerPage:30" >
+
+                <td>{{p}}</td>
+
+            </tr>
+
+        </table>
+</form>
+
+</div>
